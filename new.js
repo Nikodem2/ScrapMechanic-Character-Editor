@@ -11,11 +11,7 @@ const rl = readline.createInterface({
 const require = createRequire(import.meta.url);
 const names = require("./CustomizationDescriptions.json");
 const config = require("./config.json");
-const path =
-  process.env.APPDATA +
-  "/Axolot Games/Scrap Mechanic/User/User_" +
-  config.steamId64 +
-  "/character";
+const path = process.env.APPDATA + "/Axolot Games/Scrap Mechanic/User/User_" + config.steamId64 + "/character";
 
 let slots = [];
 let slotnames = [
@@ -50,14 +46,11 @@ function editColor(slot) {
 
 function editSlot(slot) {
   rl.question("Change it to: ", (answer2) => {
-    let uuid = "";
+    let uuid
     if (answer2.toLocaleLowerCase() == "nothing") {
       uuid = "00000000-0000-0000-0000-000000000000";
     } else {
-      uuid = Object.keys(names).find(
-        (id) =>
-          names[id].title.toLocaleLowerCase() == answer2.toLocaleLowerCase()
-      );
+      uuid = Object.keys(names).find(id =>names[id].title.toLocaleLowerCase() == answer2.toLocaleLowerCase());
     }
     if (!uuid) {
       console.log(chalk.redBright("Invalid Garment"));
@@ -66,9 +59,10 @@ function editSlot(slot) {
     }
     var oldUuid = slots[slot].id;
     slots[slot].id = uuid;
-    if (names[oldUuid]) console.log(chalk.greenBright("Changed " + names[oldUuid].title + " to " + names[uuid].title));
-		else if (names[uuid]) console.log(chalk.greenBright("Changed " + names[oldUuid].title + " to nothing"));
-    else console.log(chalk.greenBright("Changed nothing to " + names[uuid].title));
+		if (names[uuid] && names[oldUuid]) console.log(chalk.greenBright("Changed " + names[oldUuid].title + " to " + names[uuid].title));
+		else if (!names[uuid]) console.log(chalk.greenBright("Changed " + names[oldUuid].title + " to nothing"));
+    else if (!names[oldUuid]) console.log(chalk.greenBright("Changed nothing to " + names[uuid].title));
+    else console.log(chalk.greenBright("Changed nothing to nothing"));
     editColor(slot);
   });
 }
@@ -76,23 +70,8 @@ function editSlot(slot) {
 function selectSlot() {
   console.log(chalk.greenBright("Select a slot to edit"));
   for (let i = 0; i < slots.length; i++) {
-    if (names[slots[i].id])
-      console.log(
-        chalk.greenBright(
-          i +
-            1 +
-            ". " +
-            (slotnames[i] || "Extra") +
-            " - " +
-            (names[slots[i].id].title || "Nothing")
-        )
-      );
-    else
-      console.log(
-        chalk.greenBright(
-          i + 1 + ". " + (slotnames[i] || "Extra") + " - Nothing"
-        )
-      );
+    if (names[slots[i].id]) console.log(chalk.greenBright(i + 1 + ". " + (slotnames[i] || "Extra") +" - " + (names[slots[i].id].title || "Nothing")));
+    else console.log(chalk.greenBright(i + 1 + ". " + (slotnames[i] || "Extra") + " - Nothing"));
   }
   rl.question("Which slot to edit? (type -1 to exit) \n", (answer) => {
     if (answer == -1) {
