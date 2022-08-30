@@ -5,6 +5,8 @@ Scrap Mechanic Character Editor is a tool for advanced character customisation.
 * Garment Unequiping
 * Adding new garment slots (useless right now because the game resrets the file back to 9 slots)
 ## Needs [Node.js](https://nodejs.org)
+
+### Prep: run `install.bat` or manually run `npm i` 
 ## How to use:
 1. Launch the editor via `run.bat` or by manually running `node new.js`
 1. Select a garment to edit.
