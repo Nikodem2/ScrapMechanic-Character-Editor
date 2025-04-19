@@ -4,8 +4,6 @@ Scrap Mechanic Character Editor is a tool for advanced character customisation.
 * Garment Stacking
 * Garment Unequiping
 * Adding new garment slots (useless right now because the game resrets the file back to 9 slots)
-## Credits:
-* Big Thanks to [Trbo](https://github.com/trbodev) for explaining the character file format
 ## Needs [Node.js](https://nodejs.org)
 ## Setup:
 1. Run `install.bat` or manually run `npm i` 
@@ -18,5 +16,5 @@ Scrap Mechanic Character Editor is a tool for advanced character customisation.
 ## Old.js
 `Old.js` is the first version of the editor that doesn't support scaleable slot count and color index editing.
 ## Preview:
-![Normal Editing](https://cdn.discordapp.com/attachments/1011367825643946185/1014223499549753585/Editor1.gif)
-![Garment Unequiping](https://cdn.discordapp.com/attachments/1011367825643946185/1014223500149530747/Editor2.gif)
+![Normal Editing](./Img/Editor1.gif)
+![Garment Unequiping](./Img/Editor2.gif)
